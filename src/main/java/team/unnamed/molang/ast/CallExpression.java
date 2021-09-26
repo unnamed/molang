@@ -66,4 +66,8 @@ public class CallExpression
         return "Call(" + function + ", " + arguments + ")";
     }
 
+    @Override
+    public int getNodeType() {
+        return 0;
+    }
 }

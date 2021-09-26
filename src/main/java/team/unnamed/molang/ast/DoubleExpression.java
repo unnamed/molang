@@ -28,6 +28,11 @@ public class DoubleExpression implements Expression {
     }
 
     @Override
+    public int getNodeType() {
+        return Tokens.TYPE_DOUBLE;
+    }
+
+    @Override
     public Object eval(EvalContext context) {
         return value;
     }

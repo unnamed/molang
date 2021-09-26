@@ -7,6 +7,8 @@ package team.unnamed.molang.ast;
  */
 public final class Tokens {
 
+    public static final int TYPE_DOUBLE = 1;
+
     /**
      * Character used to escape other characters
      * to consider them special characters or

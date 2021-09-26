@@ -3,32 +3,39 @@ package team.unnamed.molang.ast;
 import team.unnamed.molang.context.EvalContext;
 
 /**
- * {@link InfixExpression} implementation for
+ * {@link Expression} implementation for
  * representing field accessing
  */
 public class AccessExpression
-        extends InfixExpression {
+        implements Expression {
 
-    public AccessExpression(
-            Expression leftHand,
-            Expression rightHand
-    ) {
-        super(leftHand, rightHand);
+    private final Expression object;
+    // todo: maybe use a string?
+    private final Expression property;
+
+    public AccessExpression(Expression object, Expression property) {
+        this.object = object;
+        this.property = property;
     }
 
     @Override
     public Object eval(EvalContext context) {
-        return leftHand.evalProperty(context, rightHand); // temporary
+        return object.evalProperty(context, property); // temporary
     }
 
     @Override
     public String toSource() {
-        return leftHand.toSource() + '.' + rightHand.toSource();
+        return object.toSource() + '.' + property.toSource();
     }
 
     @Override
     public String toString() {
-        return "Access(" + leftHand + ", " + rightHand + ")";
+        return "Access(" + object + ", " + property + ")";
+    }
+
+    @Override
+    public int getNodeType() {
+        return 0;
     }
 
 }
