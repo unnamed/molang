@@ -34,7 +34,9 @@ public interface Expression extends Node {
      * Evaluates the expression using
      * the given {@code context}
      */
-    Object eval(EvalContext context);
+    default Object eval(EvalContext context) {
+        return null;
+    }
 
     /**
      * Evaluates the given {@code property} for

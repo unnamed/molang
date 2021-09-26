@@ -1,31 +1,64 @@
 package team.unnamed.molang.ast;
 
 /**
- * Abstraction for all {@link Expression}
- * composed by two {@link Expression}, they
- * are the left-hand expression and the
- * right-hand expression, respectively
+ * Represents an infix (binary) expression, composed
+ * by two {@link Expression} called {@code left} and
+ * {@code right}
+ *
+ * <p>The operator is specified by the node type</p>
  */
-public abstract class InfixExpression
+public class InfixExpression
         implements Expression {
 
-    protected final Expression leftHand;
-    protected final Expression rightHand;
+    private final int operator;
+    private final Expression left;
+    private final Expression right;
 
     public InfixExpression(
-            Expression leftHand,
+            int operator,
+            Expression left,
             Expression rightHand
     ) {
-        this.leftHand = leftHand;
-        this.rightHand = rightHand;
+        this.operator = operator;
+        this.left = left;
+        this.right = rightHand;
     }
 
-    public Expression getLeftHand() {
-        return leftHand;
+    @Override
+    public int getNodeType() {
+        return operator;
     }
 
-    public Expression getRightHand() {
-        return rightHand;
+    /**
+     * Returns the operator of this binary expression,
+     * this determines how to operate both {@code left}
+     * and {@code right} expression values
+     */
+    public int getOperator() {
+        return operator;
+    }
+
+    /**
+     * Returns the left-side expression
+     */
+    public Expression getLeft() {
+        return left;
+    }
+
+    /**
+     * Returns the right-side expression
+     */
+    public Expression getRight() {
+        return right;
+    }
+
+    @Override
+    public String toSource() {
+        return left.toSource()
+                + " "
+                + Tokens.getNameForOperator(operator)
+                + " "
+                + right.toSource();
     }
 
 }

@@ -40,4 +40,9 @@ public final class Tokens {
         return isLetter(c) || c == UNDERSCORE;
     }
 
+    public static String getNameForOperator(int op) {
+        // todo:
+        return op + "";
+    }
+
 }
